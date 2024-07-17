@@ -1,0 +1,80 @@
+/* navbar */
+.navbar-nav {
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 15px;
+}
+
+@media (max-width: 575.98px) {
+    .navbar-text img {
+        width: 30px;
+    }
+
+    .navbar-brand {
+        margin-left: 35px; /* 로고의 왼쪽 간격 추가 */
+    }
+
+    .navbar-text {
+        margin-right: auto; /* 날씨 텍스트가 왼쪽으로 이동 */
+    }
+
+    .nav-item {
+        margin-left: 0; /* 모바일에서 nav-item 간격 제거 */
+    }
+
+    .dropdown-menu {
+        right: 10px; /* 오른쪽 정렬 해제 */
+        left: auto; /* 왼쪽에 맞춤 */
+        transform: translateX(-50%); /* 수평 위치 조정 */
+        min-width: 100px; /* 최소 너비 설정 */
+    }
+}
+
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    transition: transform 0.2s;
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.1);
+}
+
+.nav-link {
+    color: #007bff;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #0056b3;
+}
+
+.dropdown-menu {
+    min-width: 120px;
+}
+
+/* 언어 드롭다운 메뉴가 위로 올라가지 않도록 고정 */
+.navbar-nav .dropdown-menu-end {
+    right: 0;
+    left: auto;
+}
+
+.navbar-nav .dropdown-toggle::after {
+    vertical-align: middle;
+}
+
+.navbar-nav .fixed-toggle {
+    position: relative;
+}
+
+.navbar-nav .dropdown-menu {
+    top: 100%; /* 부모 요소 바로 아래에 위치 */
+    position: absolute;
+    left: 10%; 
+    transform: translateX(-50%); 
+}
