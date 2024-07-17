@@ -78,3 +78,75 @@
     left: 10%; 
     transform: translateX(-50%); 
 }
+
+/* footer */
+footer {
+    background-color: #f8f9fa;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+}
+
+.first-box {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.company {
+    margin-right: 255px;
+    font-family: sans-serif;
+}
+
+.second-line {
+    color: black;
+}
+
+.second-box {
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.sns-box {
+    width: 45px;
+    height: 45px;
+    background-color: red;
+    border-radius: 50%;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sns-box a {
+    text-decoration: none;
+}
+
+.sns-icon {
+    color: white;
+    font-size: 25px;
+}
+
+.sns-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Responsive Design for Mobile */
+@media screen and (min-width: 320px) and (max-width: 1199px) {
+    .laptop {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .mobile {
+        display: none;
+    }
+}
