@@ -17,7 +17,7 @@ body { background-color: #ececec; height: 100vh; width: 100vw;}
 h1.etiquette{
     font-size: 2.5em; line-height: 1.5; font-weight: 700;
 }
-h2.etiquette_sub_title{font-size: 1.5em; line-height: 2; font-weight: 500;}
+h2.etiquette_sub_title{font-size: 1.5em; word-break: keep-all; line-height: 2; font-weight: 500;}
 .container{ width: 960px;
     margin: 0px auto;
     text-align: center;}
@@ -29,13 +29,66 @@ section{ width: 100%; background-color: #fff; border-radius: 20px; box-shadow: r
     border-top-left-radius: 20px;border-top-right-radius: 20px;
 }
 
-.chat_content{overflow-y: scroll;position: relative; padding: 0.8em; width:100%; height: 600px; box-sizing: border-box; } 
+.chat_content{overflow-y: scroll; scroll-behavior: smooth; position: relative; padding: 0.8em; width:100%; height: 600px; box-sizing: border-box; } 
 .chat_content > ul{ display: grid; grid-template-rows: max-content; row-gap: 10px;} 
-.chat_content > ul > li{line-height: 1.5;
-    padding: 0.5em 0.8em; border-radius: 20px; word-break: keep-all; max-width: 80%; font-size: 1.2em; } 
-.chat_content > ul > li.bot_right{justify-self: end; border-bottom-right-radius: 4px; text-align: right; background-color: #D9D9D9;}  
-.chat_content > ul > li.bot_left{justify-self: start; border-bottom-left-radius: 4px; text-align: left; background-color: antiquewhite;}
+.chat_content > ul > li{
+    padding: 0.5em 0.8em; border-radius: 20px; word-break: keep-all; max-width: 70%; font-size: 1.2em; } 
+.chat_content > ul > li.bot_right{justify-self: end; border-bottom-right-radius: 1px; text-align: right; background-color: #D9D9D9;}  
+.chat_content > ul > li.bot_left{justify-self: start; border-bottom-left-radius: 1px; text-align: left; background-color: antiquewhite;}
 .input_area{ border-bottom-left-radius: 20px;border-bottom-right-radius: 20px; background-color: #323941;width: 100%;  height: 80px;}
 
 #select_input{margin: 1.5em auto; padding: 0.8em 1em; border-radius: 20px; width: 80%;}
 #select_btn{padding: 0.8em 1em; border-radius: 20px; width: 10%;}
+
+.appear{line-height: 1.5; animation: textAppear 1s ease-in-out;
+    animation-fill-mode: forwards;
+    opacity: 0;}
+
+@keyframes textAppear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+/* 태블릿 크기 */
+@media (max-width: 1024px) {
+    .container {
+      width: 90%;
+    }
+    .chat_content {
+      height: 500px;
+    }
+  }
+  
+  /* 모바일 크기 */
+  @media (max-width: 768px) {
+    .container {
+      width: 100%;
+      padding: 0 20px;
+    }
+    h1.etiquette {
+      font-size: 2em;
+    }
+    h2.etiquette_sub_title {
+      font-size: 1.2em;
+    }
+    .chat_content {
+      height: 450px;
+    }
+    .chat_content > ul > li {
+      max-width: 80%;
+      font-size: 1em;
+    }
+    .input_area {
+      height: 70px;
+    }
+    #select_input {
+      width: 70%;
+    }
+    #select_btn {
+      width: 20%;
+    }
+  }
