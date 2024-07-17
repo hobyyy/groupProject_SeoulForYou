@@ -1,3 +1,10 @@
+body {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
 /* navbar */
 .navbar-nav {
     flex-direction: row;
@@ -115,12 +122,17 @@ footer {
 .sns-box {
     width: 45px;
     height: 45px;
-    background-color: red;
+    background-color: #333; /* 아이콘 배경색 변경 */
     border-radius: 50%;
     margin-right: 15px; /* 아이콘 간격 조정 */
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s; /* 호버 효과 추가 */
+}
+
+.sns-box:hover {
+    background-color: #555; /* 호버 시 배경색 변경 */
 }
 
 .sns-box a {
@@ -128,19 +140,22 @@ footer {
 }
 
 .sns-icon {
-    color: white;
-    font-size: 25px; /* 컴퓨터 화면에서의 아이콘 크기 */
+    color: #fff; /* 아이콘 색상 변경 */
+    font-size: 25px; /* 아이콘 크기 조정 */
+    transition: color 0.3s, transform 0.3s; /* 호버 효과 추가 */
 }
 
 .sns-icon:hover {
-    transform: scale(1.2);
+    color: #ddd; /* 호버 시 아이콘 색상 변경 */
+    transform: scale(1.2); /* 호버 시 아이콘 확대 */
 }
 
 /* 모바일 버전에서의 SNS 아이콘 크기 조정 */
 .mobile-sns {
     width: 35px;
     height: 35px;
-    margin-right: 10px; /* 모바일에서 아이콘 간격 조정 */
+    background-color: #333; /* 아이콘 배경색 변경 */
+    margin-right: 10px; /* 좌우 간격 조정 */
 }
 
 .mobile-sns-icon {
