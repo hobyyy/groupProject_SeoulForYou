@@ -1,5 +1,5 @@
 // 날씨 API
-const apiKey = '8f96d88863ec693820e54665e9bbc266'; // 올바른 API 키로 교체
+const apiKey = '8f96d88863ec693820e54665e9bbc266'; 
 const city = 'Seoul';
 const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=kr`;
 
