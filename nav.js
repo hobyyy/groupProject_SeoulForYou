@@ -31,3 +31,5 @@ fetch(url)
         console.error('Error fetching weather data:', error);
         document.querySelector('.navbar-text').textContent = '날씨 정보를 불러오는데 실패했습니다.';
     });
+
+// 언어 변경
