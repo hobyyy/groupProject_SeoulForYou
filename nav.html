@@ -19,32 +19,54 @@
                 <span class="navbar-text me-3">
                     <!-- weather will be inserted here -->
                 </span>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fixed-toggle" href="#" id="languageDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            한국어
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                            <li><a class="dropdown-item" href="#" onclick="translatePage('ko')">한국어</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="translatePage('en')">English</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="translatePage('ja')">日本語</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="translatePage('zh')">中文</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+                <div id="google_translate_element"></div>
+                <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {new google.translate.TranslateElement({pageLanguage: 'ko',autoDisplay: false}, 'google_translate_element');}
+                </script>            </div>
         </div>
     </nav>
 
-    <main>
-        <div>123</div>
-        <div>123</div>
-        <div>123</div>
-        <div>123</div>
-        <div>123</div>
+    <main class="d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="container my-5">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <a href="map.html" class="card-link">
+                        <div class="card h-100 text-white bg-primary">
+                            <div class="card-body">
+                                <h5 class="card-title translatable">편의시설</h5>
+                                <p class="card-text translatable">주변의 다양한 편의시설을 쉽게 찾아보세요</p>
+                                <img src="image1.png" class="img-fluid" alt="이미지 설명">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="etiquette.html" class="card-link">
+                        <div class="card h-100 text-white bg-success">
+                            <div class="card-body"  >
+                                <h5 class="card-title translatable">에티켓</h5>
+                                <p class="card-text translatable">한국에서 꼭 지켜야 할 에티켓을 알아보세요</p>
+                                <img src="image2.png" class="img-fluid" alt="이미지 설명">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="page3.html" class="card-link">
+                        <div class="card h-100 text-white bg-dark">
+                            <div class="card-body">
+                                <h5 class="card-title translatable">소식</h5>
+                                <p class="card-text translatable">서울에서 열리는 최신 공연과 전시 소식을 놓치지마세요</p>
+                                <img src="image4.png" class="img-fluid" alt="이미지 설명">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
-   
+
     <footer>
         <!-- Laptop ver. -->
         <div class="container laptop" style="width: 100%">

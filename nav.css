@@ -89,6 +89,26 @@ body {
     transform: translateX(-50%); 
 }
 
+/* main */
+main {
+    flex-grow: 1;
+}
+
+.card-body img {
+    margin-top: 20px;
+}
+
+/* .card-link 스타일 추가 */
+.card-link {
+    text-decoration: none;
+}
+
+.card-link:hover .card {
+    transform: scale(1.02);
+    transition: transform 0.2s;
+}
+
+
 
 /* footer */
 footer {
