@@ -70,31 +70,34 @@ function translatePage(language) {
     }
 
     const elements = document.querySelectorAll('.translatable');
+    const texts = Array.from(elements).map(element => element.textContent.trim());
     
-    elements.forEach(element => {
-        const text = element.textContent.trim();
-        
-        fetch(`https://translation.googleapis.com/language/translate/v2?key=${translateApiKey}`, {
-            method: 'POST',
-            body: JSON.stringify({
-                q: text,
-                target: language
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                console.error('Error translating text:', data.error);
-                return;
-            }
-            element.textContent = data.data.translations[0].translatedText;
-        })
-        .catch(error => {
-            console.error('Error translating text:', error);
+    const requestBody = {
+        q: texts,
+        target: language,
+        format: 'text'
+    };
+
+    fetch(`https://translation.googleapis.com/language/translate/v2?key=${translateApiKey}`, {
+        method: 'POST',
+        body: JSON.stringify(requestBody),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error('Error translating text:', data.error);
+            return;
+        }
+        const translations = data.data.translations;
+        elements.forEach((element, index) => {
+            element.textContent = translations[index].translatedText;
         });
+    })
+    .catch(error => {
+        console.error('Error translating text:', error);
     });
 }
 
