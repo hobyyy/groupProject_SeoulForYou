@@ -1,3 +1,6 @@
+function googleTranslateElementInit() {
+	new google.translate.TranslateElement({pageLanguage: 'ko' , includedLanguages : 'ko,en,jp'}, 'google_translate_element');
+}
 // NAVER MAP API SETTING
 // let map = new naver.maps.Map('map', {
 //   center: new naver.maps.LatLng(37.5112, 127.0981), // 잠실 롯데월드를 중심으로 하는 지도
