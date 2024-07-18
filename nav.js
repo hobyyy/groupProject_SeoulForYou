@@ -68,6 +68,10 @@ function restoreInitialTexts() {
     });
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function translatePage(language) {
     currentLanguage = language; // 현재 선택된 언어 업데이트
 
@@ -103,7 +107,7 @@ function translatePage(language) {
         }
         const translations = data.data.translations;
         elements.forEach((element, index) => {
-            element.textContent = translations[index].translatedText;
+            element.textContent = capitalizeFirstLetter(translations[index].translatedText);
         });
     })
     .catch(error => {
@@ -141,7 +145,7 @@ function translateUpdatedContent() {
         }
         const translations = data.data.translations;
         elements.forEach((element, index) => {
-            element.textContent = translations[index].translatedText;
+            element.textContent = capitalizeFirstLetter(translations[index].translatedText);
         });
     })
     .catch(error => {
