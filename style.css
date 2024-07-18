@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Pretendard-Regular';
+}
+
+.card-header {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    border-bottom: double 4px black;
+}
+
+.menus {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 4px double black;
+}
+
+.menus button{
+    border: none;
+    background: none;
+    margin: 5px;
+}
+
+
+.card {
+    width: 320px;
+    height: 590px;
+}
+
+.card-img-top{
+    min-width: 315px;
+    min-height: 450px;
+}
+.position{
+    margin: 5%;
+}
+
+#festival-card-section{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 5%;
+    
+}
+
+.move-card-area{
+    text-decoration: none;
+    display: flex;
+    margin: 0.5em;
+}
+
+
+@media screen and (min-width: 600px) {
+    #festival-card-section {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+
+  }
+  
+  @media screen and (min-width: 1024px) {
+    #festival-card-section {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  
+   
+  }
+
