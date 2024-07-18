@@ -1,7 +1,14 @@
-const apiKey = '8f96d88863ec693820e54665e9bbc266';
+const weatherApiKey = '8f96d88863ec693820e54665e9bbc266';
 const city = 'Seoul';
-const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=kr`;
+const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric&lang=kr`;
+
 const translateApiKey = 'AIzaSyDKJMc8rwed5Dr6KyFzR2AvOvZpgidnH1c';
+const languageMap = {
+    'ko': '한국어',
+    'en': 'English',
+    'ja': '日本語',
+    'zh': '中文'
+};
 
 // 초기 텍스트 저장용 객체
 const initialTexts = {};
@@ -18,7 +25,6 @@ function updateWeather() {
             return response.json();
         })
         .then(data => {
-            console.log(data); // 데이터 확인용
             if (data.cod === 200) {
                 const temperature = data.main.temp.toFixed(1); // 소수점 첫째 자리까지
                 const weatherDescription = data.weather[0].description;
@@ -54,13 +60,6 @@ function restoreInitialTexts() {
 }
 
 function translatePage(language) {
-    const languageMap = {
-        'ko': '한국어',
-        'en': 'English',
-        'ja': '日本語',
-        'zh': '中文'
-    };
-
     // 드롭다운 메뉴의 텍스트 변경
     document.getElementById('languageDropdown').textContent = languageMap[language];
 
