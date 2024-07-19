@@ -1,3 +1,4 @@
+/*-----------------------------------------------------------------여기 부터 소식 하단 파트 ----------------------------------------------------------------------------------------*/
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -13,7 +14,7 @@ body {
     margin-top: 1em;
     display: flex;
     justify-content: center;
-    border-bottom: double 4px black;
+    font-size: 80px;
 }
 
 .typeButton {           /* 카테고리 */
@@ -22,14 +23,39 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     border-top: 1px solid #ebebeb;
-    border-bottom: 4px double black;
+    border-bottom: 4px double darkgray;
 }
 
 .typeButton button{   /* 카테고리 버튼 */
-    border: none;
+   /* border: none;
     background: none;
+    */
+    font-size: 20px;
     margin: 5px;
+    outline:none;
+    height: 40px;
+    text-align: center;
+    width: 140px;
+    border-radius:10px;
+    background: #fff;
+    border: 2px solid darkgrey;
+    color: grey;
+    cursor:pointer;
+    transition:all 0.25s ease;
+    &:focus{
+        color:black;
+        background: #ececec;  
+    }
+    &:hover {
+      color:black;
+      background: #ececec;
+    }
+  
 }
+
+
+  
+
 
 
 .card {              /* 카드 */
@@ -101,7 +127,7 @@ body {
 
 
 
-/*-----------------------------------------------------------------소식 하단 파트 ----------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------여기 까지 소식 하단 파트 ----------------------------------------------------------------------------------------*/
 /* navbar */
 .navbar-nav {
     flex-direction: row;
