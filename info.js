@@ -52,7 +52,7 @@ const cardRender = () => {   // 카드 안에 API 데이터를 넣어서 불러�
                         
                         <div class="card-body">
                             <h5 class="card-title">${festival.TITLE.length>16?festival.TITLE.substring(0,16)+'...':festival.TITLE}</h5>
-                            <p class="card-text">${festival.STRTDATE}~${dateFormat(festival.END_DATE)}</p>
+                            <p class="card-text">${festival.DATE}</p>
                         </div>        
                     </div>
                 </div>
