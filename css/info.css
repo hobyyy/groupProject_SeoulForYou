@@ -1,0 +1,228 @@
+/* reset */
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+* {
+  font-family: 'Pretendard-Regular';
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #ececec;
+}
+ul,
+li {
+  list-style: none;
+}
+/* 행사&축제 */
+.festival {
+  padding-bottom: 40px;
+}
+.festival-title {
+  margin-bottom: 0;
+  padding: 80px 0 40px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.swiper-wrap {
+  position: relative;
+  margin-bottom: 20px;
+}
+.swiper {
+  height: 350px;
+}
+.swipe-pagination {
+  display: none;
+}
+.swiper-btn-next,
+.swiper-btn-prev {
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.13);
+  z-index: 10;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-btn-next:after,
+.swiper-btn-prev:after {
+  content: '';
+}
+.swiper-btn-prev {
+  left: 0px;
+  transform: translate(-50%, -50%);
+}
+.swiper-btn-next {
+  right: 0px;
+  transform: translate(50%, -50%);
+}
+.swiper-btn-prev.swiper-button-disabled,
+.swiper-btn-next.swiper-button-disabled {
+  display: none;
+}
+.swiper-slide {
+  overflow: hidden;
+  background-size: cover;
+  background-position: top;
+  border-radius: 5px;
+}
+.swiper-slide.no-img {
+  background-position: center;
+}
+.swiper-slide > a {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+}
+.swiper-status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  color: #fff;
+  background-color: orange;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+.swiper-status.ing {
+  background-color: deepskyblue;
+}
+.swiper-desc {
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  transition: all 100ms ease-in;
+}
+.swiper-slide:hover .swiper-desc {
+  padding-bottom: 20px;
+}
+.swiper-title,
+.swiper-date {
+  margin-bottom: 0;
+}
+.swiper-title {
+  font-size: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 5px;
+}
+.swiper-date {
+  font-size: 0.8rem;
+  color: #c3c3c3;
+}
+.swiper-slide:hover .swiper-title,
+.swiper-slide:hover .swiper-date {
+  text-decoration: underline;
+}
+
+.festival-more-list {
+  padding-left: 0;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 15px;
+}
+.more-item {
+  margin: 10px 0;
+  align-self: end;
+}
+.more-item:first-child {
+  margin-top: 100px;
+}
+.more-item > a {
+  text-decoration: none;
+}
+.more-item-img {
+  height: 251.5px;
+  background-size: cover;
+  background-position: top;
+}
+.more-item-img.no-img {
+  background-position: center;
+}
+.more-item-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  color: #111;
+}
+.more-item-date {
+  margin-bottom: 0;
+  font-size: 0.8rem;
+  color: #c3c3c3;
+  transition: color 100ms ease-in-out;
+}
+.more-item:hover .more-item-date {
+  color: #555;
+}
+.more-item-location {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  color: #939393;
+}
+.festival-more-btn {
+  display: flex;
+  justify-content: center;
+}
+.festival-more-btn button {
+  padding: 10px 30px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #666;
+}
+.festival-more-btn button i {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .swiper-btn-prev,
+  .swiper-btn-next {
+    display: none;
+  }
+  .swipe-pagination {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: #666;
+  }
+  .festival-more-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .festival-more-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .festival-more-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
