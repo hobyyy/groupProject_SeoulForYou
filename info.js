@@ -1,12 +1,14 @@
 // <---------------------------------------------------------------여기 부터 소식 하단 파트 --------------------------------------------------------->//
 const festivalApiKey = `59746b4962686f7436334e564e6778`;
 let festivalUrl = new URL(`http://openapi.seoul.go.kr:8088/${festivalApiKey}/json/culturalEventInfo/1/50///2024-07-21`); // API 키
-const typeButtons = document.querySelectorAll(".typeButton button"); 
+const typeButtons = document.querySelectorAll(".typeButton button, .typeButton button font"); 
 typeButtons.forEach(menu=>menu.addEventListener("click",(event)=>getCardsByCategory(event))); // 메뉴 버튼과 클릭시 이벤트 발생
 const $topBtn = document.querySelector(".moveTopBtn"); // 스크롤 업 버튼
 let festivalList = []; // API 정보 받을 배열
 
-
+function googleTranslateElementInit() {
+	new google.translate.TranslateElement({pageLanguage: 'ko' , includedLanguages : 'ko,en,jp'}, 'google_translate_element');
+}
 
 const festivalView = async () => { // API 값을 불러오는 기능
     
@@ -22,7 +24,7 @@ const festivalView = async () => { // API 값을 불러오는 기능
 };
 
 const getCardsByCategory = async (event) => { // 버튼을 누르면 해당 카테고리의 행사를 찾아주는 기능
-    let category =event.target.textContent;
+    let category =event.currentTarget.getAttribute("data-categoryBtn");
     console.log(category)
     if(category ==="전체"){
         festivalUrl = new URL(`http://openapi.seoul.go.kr:8088/${festivalApiKey}/json/culturalEventInfo/1/50///2024-07-21`);
