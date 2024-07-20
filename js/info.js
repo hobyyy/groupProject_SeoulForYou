@@ -6,6 +6,7 @@ typeButtons.forEach(menu=>menu.addEventListener("click",(event)=>getCardsByCateg
 const $topBtn = document.querySelector(".moveTopBtn"); // 스크롤 업 버튼
 let underFestivalList = []; // API 정보 받을 배열
 
+
 function googleTranslateElementInit() {
 	new google.translate.TranslateElement({pageLanguage: 'ko' , includedLanguages : 'ko,en,jp'}, 'google_translate_element');
 }
