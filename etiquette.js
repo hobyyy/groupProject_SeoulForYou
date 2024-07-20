@@ -37,6 +37,7 @@ selectInput.selectedIndex = 0;
             resultHtml.push(`<li class="bot_right">한국에서는 대중교통에서 음식물을 먹어도 되나요?</li>`);
             resultHtml.push(`<li class="bot_left">한국에서 대중교통에서 음식물을 먹는 것은 허용되지 않습니다. 대부분의 지하철과 버스에서는 음식물 반입과 섭취가 금지되어 있습니다. 단, 물이나 주스 같은 음료는 마실 수 있습니다.
 이는 다른 승객들의 불편을 최소화하고 깨끗한 대중교통 환경을 유지하기 위한 규칙입니다. 대중교통 내에서는 음식물 섭취를 자제하시는 것이 좋습니다. 만약 배고프시다면 역이나 정류장에서 먹는 것이 좋습니다. 이 규칙을 지켜주셔서 감사합니다.</li>`);  
+if (selectInput.length > 1) {resultHtml.push(`<li class="bot_left">궁금한 점이 더 있으시면 말씀해 주세요.</li>`);}  
 break;
 
         case "que2":
@@ -49,6 +50,7 @@ break;
 <br>5. 식사 중에 스마트폰 사용은 자제하는 것이 좋습니다.
 <br>6. 식사가 끝나면 감사 인사를 하는 것이 일반적입니다.
 <br> 이러한 예절을 지켜 주시면 한국 문화에 대한 이해도가 높아질 것입니다. </li>`);
+if (selectInput.length > 1) {resultHtml.push(`<li class="bot_left">궁금한 점이 더 있으시면 말씀해 주세요.</li>`);}  
             break;
 
         case "que3":
@@ -64,6 +66,7 @@ break;
 <br>6. 예를 들어 선배나 교수님, 상사 등에게는 존댓말을 사용하고, 또래나 친구, 가족에게는 반말을 사용하는 것이 일반적입니다.
 <br> 
 존댓말을 사용하지 않으면 무례하게 보일 수 있으므로, 상황에 맞는 적절한 존댓말 사용이 중요합니다. </li> `);
+if (selectInput.length > 1) {resultHtml.push(`<li class="bot_left">궁금한 점이 더 있으시면 말씀해 주세요.</li>`);}  
             break;
 
         case "que4":
@@ -78,6 +81,7 @@ break;
 <br>7. 공공장소에서 큰 소리로 통화하는 것
 <br>8. 흡연 구역 이외의 장소에서 흡연하는 것
 <br>이러한 행동들은 한국 문화에서 예의바르지 않은 것으로 여겨집니다. 상대방을 존중하고 배려하는 태도가 중요합니다. </li>`);
+if (selectInput.length > 1) {resultHtml.push(`<li class="bot_left">궁금한 점이 더 있으시면 말씀해 주세요.</li>`);}  
             break;
 
         case "que5":
@@ -87,15 +91,18 @@ break;
 다만 고급 레스토랑이나 특별한 서비스를 받은 경우에는 팁을 주는 것이 좋습니다. 팁은 총 계산액의 5-10% 정도가 적당합니다.
 하지만 팁을 주는지 여부는 개인의 선택이며, 팁을 주지 않아도 문제가 되지 않습니다. 한국 문화에서는 팁을 강요하지 않습니다.
 다만 해외에서 자주 가던 식당에서는 팁 문화가 자리 잡혀 있을 수 있으니 그런 경우에는 팁을 주는 것이 좋습니다. </li>`);
+if (selectInput.length > 1) {resultHtml.push(`<li class="bot_left">궁금한 점이 더 있으시면 말씀해 주세요.</li>`);}  
             break;
 
         default:
             break;
     }
 
-    if (selectInput.length > 1) {
-        addQuestionPrompt();
-    } else {resultHtml.push(`<li class="bot_left">축하합니다! 필요한 에티켓을 전부 배우셨어요!</li><li class="bot_left"><button onclick="reloadStart()">채팅 다시 시작하기</button>   </li>`);}  
+    if (selectInput.length == 1) {
+        resultHtml.push(`<li class="bot_left">축하합니다! 필요한 에티켓을 전부 배우셨어요!</li><li class="bot_left">
+            <button class="reset_btn" onclick="reloadStart()">채팅 다시 시작하기</button>   </li>`);
+            question.disabled = true;
+        }  
  
     resultHtml.forEach((html, index) => {
         setTimeout(() => {
