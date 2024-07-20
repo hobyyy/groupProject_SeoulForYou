@@ -1,13 +1,14 @@
 /*-----------------------------------------------------------------여기 부터 소식 하단 파트 ----------------------------------------------------------------------------------------*/
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
-    font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard-Regular';
 }
 
 .card-header {        /* 행사 타이틀 */
@@ -20,17 +21,19 @@ body {
     
 }
 
-.typeButton {           /* 카테고리 */
-    margin-top: 1em;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    border-top: 1px solid #ebebeb;
-    border-bottom: 4px double darkgray;
+.typeButton {
+  /* 카테고리 */
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 4px double darkgray;
 }
 
-.typeButton button{   /* 카테고리 버튼 */
-   /* border: none;
+.typeButton button {
+  /* 카테고리 버튼 */
+  /* border: none;
     background: none;
     */
     font-size: 0.9em;
@@ -104,6 +107,50 @@ body {
     align-items: center;
 }
 
+.card {
+  /* 카드 */
+  width: 320px;
+  height: 590px;
+}
+
+.card-img-top {
+  /* 카드에 들어가는 이미지 */
+  min-width: 315px;
+  height: 450px;
+}
+.position {
+  /* 카드 배치 */
+  margin: 5%;
+}
+
+#festival-card-section {
+  /* 카드 묶음 배치 */
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 5%;
+}
+
+.card-text-area {
+  /* a 태그 글씨 스타일 */
+  text-decoration: none;
+  display: flex;
+  margin: 0.5em;
+}
+
+.moveTopBtn {
+  /* 스크롤 top 버튼 */
+  position: fixed;
+  bottom: 200px;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  background: #ececec;
+  color: darkgray;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media screen and (min-width: 624px) {
     #festival-card-section {
@@ -127,6 +174,7 @@ body {
    
   }
 
+
   @media screen and (min-width:1100px )and (max-width: 1400px) {
     #festival-card-section {
       grid-template-columns: 1fr 1fr 1fr;
@@ -139,204 +187,303 @@ body {
 
 
 /*-----------------------------------------------------------------여기 까지 소식 하단 파트 ----------------------------------------------------------------------------------------*/
+body {
+  font-family: 'Pretendard-Regular', sans-serif;
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* 전체 배경 색상 */
+  margin: 0;
+  padding: 0;
+}
+
 /* navbar */
 .navbar-nav {
-    flex-direction: row;
-    align-items: center;
+  flex-direction: row;
+  align-items: center;
 }
 
 .nav-item {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 @media (max-width: 575.98px) {
-    .navbar-text img {
-        width: 30px;
-    }
+  .navbar-text img {
+    width: 30px;
+  }
 
-    .navbar-brand {
-        margin-left: 35px; /* 로고의 왼쪽 간격 추가 */
-    }
+  .navbar-brand {
+    margin-left: 35px; /* 로고의 왼쪽 간격 추가 */
+  }
 
-    .navbar-text {
-        margin-right: auto; /* 날씨 텍스트가 왼쪽으로 이동 */
-    }
+  .navbar-text {
+    margin-right: auto; /* 날씨 텍스트가 왼쪽으로 이동 */
+  }
 
-    .nav-item {
-        margin-left: 0; /* 모바일에서 nav-item 간격 제거 */
-    }
+  .nav-item {
+    margin-left: 0; /* 모바일에서 nav-item 간격 제거 */
+  }
 
-    .dropdown-menu {
-        right: 10px; /* 오른쪽 정렬 해제 */
-        left: auto; /* 왼쪽에 맞춤 */
-        transform: translateX(-50%); /* 수평 위치 조정 */
-        min-width: 100px; /* 최소 너비 설정 */
-    }
+  .dropdown-menu {
+    right: 10px; /* 오른쪽 정렬 해제 */
+    left: auto; /* 왼쪽에 맞춤 */
+    transform: translateX(-50%); /* 수평 위치 조정 */
+    min-width: 100px; /* 최소 너비 설정 */
+  }
 }
 
 .navbar {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand img {
-    transition: transform 0.2s;
+  transition: transform 0.2s;
 }
 
 .navbar-brand img:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .nav-link {
-    color: #007bff;
-    transition: color 0.2s;
+  color: #007bff;
+  transition: color 0.2s;
 }
 
 .nav-link:hover {
-    color: #0056b3;
+  color: #0056b3;
 }
 
 .dropdown-menu {
-    min-width: 120px;
+  min-width: 120px;
 }
 
 /* 언어 드롭다운 메뉴가 위로 올라가지 않도록 고정 */
 .navbar-nav .dropdown-menu-end {
-    right: 0;
-    left: auto;
+  right: 0;
+  left: auto;
 }
 
 .navbar-nav .dropdown-toggle::after {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .navbar-nav .fixed-toggle {
-    position: relative;
+  position: relative;
 }
 
 .navbar-nav .dropdown-menu {
-    top: 100%; /* 부모 요소 바로 아래에 위치 */
-    position: absolute;
-    left: 10%; 
-    transform: translateX(-50%); 
+  top: 100%; /* 부모 요소 바로 아래에 위치 */
+  position: absolute;
+  left: 10%;
+  transform: translateX(-50%);
 }
 
+/* main */
+main {
+  flex-grow: 1;
+}
+
+.card-body img {
+  width: auto; /* 가로 크기를 자동으로 조정 */
+  height: 200px; /* 높이 조정 */
+  margin-top: auto;
+}
+
+.card-title {
+  font-size: 1.8rem; /* 카드 제목 크기 조정 */
+  margin-bottom: 15px;
+}
+
+.card-text {
+  font-size: 1.2rem; /* 카드 텍스트 크기 조정 */
+}
+
+/* .card-link 스타일 추가 */
+.card-link {
+  text-decoration: none;
+}
+
+.card-link:hover .card {
+  transform: scale(1.02);
+  transition: transform 0.2s;
+}
+
+/* 세련되고 입체적인 스타일 */
+.custom-card {
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  height: 380px; /* 높이 조정 */
+  margin-bottom: 30px; /* 카드 간격 추가 */
+}
+
+.custom-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.custom-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.custom-card img {
+  align-self: center;
+  margin-top: 20px;
+  transition: transform 0.3s;
+}
+
+.custom-card:hover img {
+  transform: scale(1.05);
+}
 
 /* footer */
 footer {
-    position: relative;
-    background-image: url('../image/footer.png');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
+  position: relative;
+  background-image: url('./image/footer.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0; /* 처음 높이로 되돌림 */
 }
 
 footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* 반투명 검정 배경 추가 */
-    z-index: 1;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* 반투명 검정 배경 추가 */
+  z-index: 1;
 }
 
 footer > .container {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
 
 .first-box {
-    width: 60%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .company {
-    margin-right: 255px;
-    font-family: sans-serif;
-    color: #fff; /* 글씨를 흰색으로 변경 */
+  margin-right: 255px;
+  font-family: sans-serif;
+  color: #fff; /* 글씨를 흰색으로 변경 */
 }
 
 .second-line {
-    color: #fff; /* 글씨를 흰색으로 변경 */
+  color: #fff; /* 글씨를 흰색으로 변경 */
 }
 
 .second-box {
-    width: 40%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .sns-box {
-    width: 45px;
-    height: 45px;
-    background-color: rgba(255, 255, 255, 0.3); /* 아이콘 배경색 변경 (반투명 흰색) */
-    border-radius: 50%;
-    margin-right: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s;
+  width: 45px;
+  height: 45px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.3
+  ); /* 아이콘 배경색 변경 (반투명 흰색) */
+  border-radius: 50%;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
 }
 
 .sns-box:hover {
-    background-color: rgba(255, 255, 255, 0.6); /* 호버 시 배경색 변경 (더 밝은 반투명 흰색) */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); /* 호버 시 배경색 변경 (더 밝은 반투명 흰색) */
 }
 
 .sns-box a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .sns-icon {
-    color: #fff; /* 아이콘 색상 흰색으로 변경 */
-    font-size: 25px;
-    transition: color 0.3s, transform 0.3s;
+  color: #fff; /* 아이콘 색상 흰색으로 변경 */
+  font-size: 25px;
+  transition: color 0.3s, transform 0.3s;
 }
 
 .sns-icon:hover {
-    color: #ddd; /* 호버 시 아이콘 색상 밝은 회색으로 변경 */
-    transform: scale(1.2);
+  color: #ddd; /* 호버 시 아이콘 색상 밝은 회색으로 변경 */
+  transform: scale(1.2);
 }
 
 /* 모바일 버전에서의 SNS 아이콘 크기 조정 */
 .mobile-sns {
-    width: 35px;
-    height: 35px;
-    background-color: rgba(255, 255, 255, 0.3);
-    margin-right: 10px;
+  width: 35px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-right: 10px;
 }
 
 .mobile-sns-icon {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 /* Responsive Design for Mobile */
 @media screen and (min-width: 320px) and (max-width: 1199px) {
-    .laptop {
-        display: none;
-    }
-    .mobile {
-        display: block;
-    }
-    .second-box {
-        justify-content: center;
-        width: 100%;
-    }
+  .laptop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+  .second-box {
+    justify-content: center;
+    width: 100%;
+  }
+  .custom-card {
+    height: 350px; /* 모바일에서 카드 높이 조정 */
+    margin-bottom: 25px; /* 카드 간격 조정 */
+  }
+  .card-title {
+    font-size: 1.5rem; /* 모바일에서 카드 제목 크기 조정 */
+  }
+  .card-text {
+    font-size: 1rem; /* 모바일에서 카드 텍스트 크기 조정 */
+  }
+  .card-body img {
+    height: 140px; /* 모바일에서 이미지 크기 조정 */
+  }
 }
 
 @media screen and (min-width: 1200px) {
-    .mobile {
-        display: none;
-    }
+  .mobile {
+    display: none;
+  }
 }
 
+/*///////////////////////////////////////////////////////info 상단/////////////////////////////////////////////////////////////////////////*/
 * {
   font-family: 'Pretendard-Regular';
   margin: 0;
@@ -471,6 +618,8 @@ li {
 .more-item {
   margin: 10px 0;
   align-self: end;
+  width: auto;
+  height: auto;
 }
 .more-item:first-child {
   margin-top: 100px;
@@ -478,30 +627,22 @@ li {
 .more-item > a {
   text-decoration: none;
 }
-.more-item-img {
-  height: 251.5px;
-  background-size: cover;
-  background-position: top;
-}
-.more-item-img.no-img {
-  background-position: center;
-}
 .more-item-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-bottom: 5px;
   font-size: 1.2rem;
-  color: #111;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.9);
 }
 .more-item-date {
   margin-bottom: 0;
   font-size: 0.8rem;
-  color: #c3c3c3;
+  color: #fff;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.9);
   transition: color 100ms ease-in-out;
-}
-.more-item:hover .more-item-date {
-  color: #555;
 }
 .more-item-location {
   display: block;
@@ -509,7 +650,8 @@ li {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 0.8rem;
-  color: #939393;
+  color: #fff;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.9);
 }
 .festival-more-btn {
   display: flex;
