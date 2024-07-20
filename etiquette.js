@@ -2,11 +2,13 @@ const question = document.getElementById("select_btn");
 const chatContent = document.getElementById("chat_content");
 let selectInput = document.getElementById("select_input");
 
+// 잘문종료 후 리셋을 위한 새로고침
 function reloadStart(){
     setTimeout(() => {window.location.reload();
     }, 500); 
 }
 
+// 질문클릭
 question.addEventListener("click", () => {
     let chatList = document.querySelector(".chat_content");
     let selectValue = selectInput.value;
@@ -98,6 +100,7 @@ if (selectInput.length > 1) {resultHtml.push(`<li class="bot_left">궁금한 점
             break;
     }
 
+    //모든 질문이 끝난 후 마지막
     if (selectInput.length == 1) {
         resultHtml.push(`<li class="bot_left">축하합니다! 필요한 에티켓을 전부 배우셨어요!</li><li class="bot_left">
             <button class="reset_btn" onclick="reloadStart()">채팅 다시 시작하기</button>   </li>`);
