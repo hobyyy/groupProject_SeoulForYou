@@ -30,17 +30,21 @@ let infowindow = new kakao.maps.InfoWindow({zIndex:1});
 // keywordSearchPlaces();
 
 // 키워드 검색을 요청하는 함수
-function keywordSearchPlaces() {
+function keywordSearchPlaces(value) {
 
-  let keyword = document.getElementById('keyword').value;
-  console.log('keyword : ', keyword)
-
+  let keyword = value ? value : document.getElementById('keyword').value;
+  
   if (!keyword.replace(/^\s+|\s+$/g, '')) {
-      alert('키워드를 입력해주세요!');
-      return false;
+    alert('키워드를 입력해주세요!');
+    return false;
   }
+  // document.getElementsByClassName('result-keyword').innerHTML = keyword;
+  // console.log('keyword : ', document.getElementsByClassName('result-keyword').innerHTML)
+  
+  // onClickCategory('reset')
+  
+  changeCategoryClass(value)
   // 장소검색 객체를 통해 키워드로 장소검색을 요청
-  onClickCategory('reset')
   ps.keywordSearch( keyword, placesKeywordSearchCB); 
 }
 
@@ -48,12 +52,10 @@ function keywordSearchPlaces() {
 function placesKeywordSearchCB(data, status, pagination) {
   if (status === kakao.maps.services.Status.OK) {
     searchPlaces();
-    console.log('data : ', data)
     // 정상적으로 검색이 완료됐으면
     // 검색 목록과 마커를 표출
     displayKeywordPlaces(data);
     
-    console.log('pagination : ', pagination)
     // 페이지 번호를 표출
     displayPagination(pagination);
 
@@ -79,8 +81,7 @@ function removeSearchList() {
 function displayKeywordPlaces(places) {
   let listEl = document.getElementById('placesList');
 
-  console.log('im here @@displayKeywordPlaces')
-  let menuEl = document.getElementById('menu_wrap'),
+  let menuEl = document.getElementById('scroll-wrapper'),
       fragment = document.createDocumentFragment(), 
       bounds = new kakao.maps.LatLngBounds(), 
       listStr = '';
@@ -98,7 +99,6 @@ function displayKeywordPlaces(places) {
     let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
         marker1 = addKeywordMarker(placePosition, i), 
         itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성
-    console.log('마커생성', placePosition)
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
     // LatLngBounds 객체에 좌표를 추가
@@ -170,7 +170,8 @@ function getListItem(index, places) {
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수
 function addKeywordMarker(position, idx, title) {
-  console.log('@@ addkeywordmarker function')
+  // console.log('@@ addkeywordmarker function')
+
   let imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
       imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
       imgOptions =  {
@@ -186,7 +187,6 @@ function addKeywordMarker(position, idx, title) {
 
   marker1.setMap(map); // 지도 위에 마커를 표출
   searchMarkers.push(marker1);  // 배열에 생성된 마커를 추가
-  console.log('searchMarkers : ', searchMarkers)
   return marker1;
 }
 
@@ -201,9 +201,7 @@ function removeSearchMarkers() {
 // 검색결과 목록 하단에 페이지번호를 삭제하는 함수 
 function deletePagination() {
   let paginationEl = document.getElementById('pagination');
-  console.log('paginationEl1 : ', paginationEl)
   while (paginationEl.hasChildNodes()) {
-    console.log('hasChildNodes')
     paginationEl.removeChild(paginationEl.lastChild);
   }
   return paginationEl
@@ -219,7 +217,6 @@ function displayPagination(pagination) {
   //   paginationEl.removeChild(paginationEl.lastChild);
   // }
   paginationEl = deletePagination();
-  console.log('paginationEl2 : ', paginationEl)
 
   // 새로운 페이지번호 만들기
   for (let i=1; i<=pagination.last; i++) {
@@ -285,7 +282,7 @@ addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
 placeOverlay.setContent(contentNode);  
 
 // 각 카테고리에 클릭 이벤트를 등록합니다
-addCategoryClickEvent();
+// addCategoryClickEvent();
 
 // 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
 function addEventHandle(target, type, callback) {
@@ -301,7 +298,6 @@ function searchPlaces() {
   if (!currCategory) {
     return;
   }
-  
   // 커스텀 오버레이를 숨김
   placeOverlay.setMap(null);
 
@@ -313,14 +309,17 @@ function searchPlaces() {
   keyword.value='';
   deletePagination();
   
-  categoryPS.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
+
+  categoryPS.keywordSearch(currCategory, placesKeywordSearchCB); 
+
+  // categoryPS.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수
 function placesSearchCB(data, status, pagination) {
+  console.log('data', data)
   if (status === kakao.maps.services.Status.OK) {
     removeMarker();
-
     // 정상적으로 검색이 완료됐으면 지도에 마커를 표출
     displayPlaces(data);
   } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
@@ -336,15 +335,21 @@ function placesSearchCB(data, status, pagination) {
 
 // 지도에 마커를 표출하는 함수
 function displayPlaces(places) {
-
   // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
   // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
   let order = document.getElementById(currCategory).getAttribute('data-order');
-
-  for ( let i=0; i<places.length; i++ ) {
+  let bounds = new kakao.maps.LatLngBounds(); 
+  
+  // for ( let i=0; i<places.length; i++ ) {
+  for ( let i=0; i<6; i++ ) {
+    
     // 마커를 생성하고 지도에 표시
+    let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x)
     let marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
-
+    
+    // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+    // LatLngBounds 객체에 좌표를 추가
+    bounds.extend(placePosition);
     // 마커와 검색결과 항목을 클릭 했을 때
     // 장소정보를 표출하도록 클릭 이벤트를 등록
     (function(marker, place) {
@@ -354,11 +359,13 @@ function displayPlaces(places) {
     })
     (marker, places[i]);
   }
+  // 검색된 장소 위치를 기준으로 지도 범위를 재설정
+  map.setBounds(bounds);
 }
+
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수
 function addMarker(position, order) {
-  console.log('addMarker@@@@@@@@@@')
   let imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지
       imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
       imgOptions =  {
@@ -415,9 +422,9 @@ function displayPlaceInfo (place) {
 function addCategoryClickEvent() {
   let category = document.getElementById('category'),
   children = category.children;
-  
   for (let i=0; i<children.length; i++) {
-    children[i].onclick = onClickCategory;
+    if(children[i].onclick) children[i].onclick = onClickCategory;
+    // children[i].onclick = onClickCategory;
   }
 }
 
@@ -425,10 +432,9 @@ function addCategoryClickEvent() {
 function onClickCategory(val) {
   let id = this.id;
   let className = this.className;
-  
   placeOverlay.setMap(null);
-  
-  console.log("className : ", className)
+
+
   if (className === 'on' || val ==='reset') {
     currCategory = '';
     changeCategoryClass();
@@ -443,12 +449,184 @@ function onClickCategory(val) {
 // 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수
 function changeCategoryClass(el) {
   let category = document.getElementById('category'),
-    children = category.children,
-    i;
+      children = category.children,
+      i;
+  
+  // console.log('children', children)
   for ( i=0; i<children.length; i++ ) {
-    children[i].className = '';
+    if(el.includes(children[i].textContent.trim())) {
+      children[i].className = 'on';
+    }else{
+      children[i].className = '';
+    }
   }
-  if (el) {
-    el.className = 'on';
-  } 
+  // if (el) {
+  //   el.className = 'on';
+  //   el.category.className = 'on';
+  //   console.log('(el)',el.category.className)
+  // } 
 } 
+
+
+
+//////////
+const weatherApiKey = '8f96d88863ec693820e54665e9bbc266';
+const translateApiKey = 'AIzaSyDKJMc8rwed5Dr6KyFzR2AvOvZpgidnH1c';
+const languageMap = {
+    'ko': '한국어',
+    'en': 'English',
+    'ja': '日本語',
+    'zh': '中文'
+};
+
+let currentLanguage = 'ko'; // 현재 선택된 언어
+
+// 초기 텍스트 저장용 객체
+const initialTexts = {};
+
+function initializeWeather(city) {
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric&lang=kr`;
+
+    function updateWeather() {
+        const weatherElement = document.querySelector('.navbar-text');
+        weatherElement.innerHTML = '날씨 정보를 불러오는 중...';
+
+        fetch(weatherUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.cod === 200) {
+                    const temperature = data.main.temp.toFixed(1); // 소수점 첫째 자리까지
+                    const weatherDescription = data.weather[0].description;
+                    const iconCode = data.weather[0].icon;
+                    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+                    weatherElement.innerHTML = `
+                        <img src="${iconUrl}" alt="${weatherDescription}" style="width: 30px; margin-right: 10px;">
+                        <span>${temperature}°C</span>
+                    `;
+
+                    // 날씨 정보가 업데이트된 후 번역
+                    translateUpdatedContent();
+                } else {
+                    weatherElement.textContent = '날씨 정보를 불러오는데 실패했습니다.';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching weather data:', error);
+                weatherElement.textContent = '날씨 정보를 불러오는데 실패했습니다.';
+            });
+    }
+
+    updateWeather();
+    setInterval(updateWeather, 600000); // 600000ms = 10분
+}
+
+function saveInitialTexts() {
+    const elements = document.querySelectorAll('.translatable');
+    elements.forEach((element, index) => {
+        initialTexts[index] = element.textContent.trim();
+    });
+}
+
+function restoreInitialTexts() {
+    const elements = document.querySelectorAll('.translatable');
+    elements.forEach((element, index) => {
+        element.textContent = initialTexts[index];
+    });
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function translatePage(language) {
+    currentLanguage = language; // 현재 선택된 언어 업데이트
+
+    // 드롭다운 메뉴의 텍스트 변경
+    document.getElementById('languageDropdown').textContent = languageMap[language];
+
+    if (language === 'ko') {
+        restoreInitialTexts();
+        return; // 한국어일 경우 번역하지 않음
+    }
+
+    const elements = document.querySelectorAll('.translatable');
+    const texts = Array.from(elements).map(element => element.textContent.trim());
+    
+    const requestBody = {
+        q: texts,
+        target: language,
+        format: 'text'
+    };
+
+    fetch(`https://translation.googleapis.com/language/translate/v2?key=${translateApiKey}`, {
+        method: 'POST',
+        body: JSON.stringify(requestBody),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error('Error translating text:', data.error);
+            return;
+        }
+        const translations = data.data.translations;
+        elements.forEach((element, index) => {
+            element.textContent = capitalizeFirstLetter(translations[index].translatedText);
+        });
+    })
+    .catch(error => {
+        console.error('Error translating text:', error);
+    });
+}
+
+function translateUpdatedContent() {
+    if (currentLanguage === 'ko') {
+        restoreInitialTexts();
+        return; // 한국어일 경우 번역하지 않음
+    }
+
+    const elements = document.querySelectorAll('.translatable');
+    const texts = Array.from(elements).map(element => element.textContent.trim());
+    
+    const requestBody = {
+        q: texts,
+        target: currentLanguage,
+        format: 'text'
+    };
+
+    fetch(`https://translation.googleapis.com/language/translate/v2?key=${translateApiKey}`, {
+        method: 'POST',
+        body: JSON.stringify(requestBody),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error('Error translating text:', data.error);
+            return;
+        }
+        const translations = data.data.translations;
+        elements.forEach((element, index) => {
+            element.textContent = capitalizeFirstLetter(translations[index].translatedText);
+        });
+    })
+    .catch(error => {
+        console.error('Error translating text:', error);
+    });
+}
+
+// 초기 텍스트 저장
+saveInitialTexts();
+
+// 날씨 정보 초기화
+initializeWeather('Seoul');
