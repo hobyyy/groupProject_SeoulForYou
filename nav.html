@@ -1,27 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script
-      src="https://kit.fontawesome.com/3be868d704.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    
-    <link rel="stylesheet" href="css/info.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="nav.css">
+</head>
+
+<body>
     <nav class="navbar navbar-light bg-light nav-deco">
         <div class="container d-flex justify-content-between">
             <a class="navbar-brand" href="./index.html">
@@ -31,61 +19,56 @@
                 <span class="navbar-text me-3">
                     <!-- weather will be inserted here -->
                 </span>
-                <ul class="navbar-nav">
-                    <div id="google_translate_element"></div>
-                    <li class="nav-item dropdown">
-                        
-                        <a class="nav-link dropdown-toggle fixed-toggle" href="#" id="languageDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            한국어
-                        </a>
-                        
-                        
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                            <li><a class="dropdown-item" href="#" onclick="translatePage('ko')">한국어</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="translatePage('en')">English</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="translatePage('ja')">日本語</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="translatePage('zh')">中文</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <div id="google_translate_element"></div>
+                <script
+                    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                <script type="text/javascript">
+                    function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'ko', autoDisplay: false }, 'google_translate_element'); }
+                </script>
             </div>
-            
         </div>
     </nav>
-    <section class="festival container">
-      <h2 class="festival-title translatable">축제/행사</h2>
-      <div class="swiper-wrap">
-        <div class="swiper festival-carousel" id="festival-swiper"></div>
-      </div>
-      <!-- //축제&행사 캐러샐 -->
-      <div class="festival-more">
-        <ul class="festival-more-list"></ul>
-        <div class="festival-more-btn"></div>
-      </div>
-      <!-- //축제&행사 정보 더 보기 -->
-    </section>
-    <!--------------------------------------------------------------------------여기 부터 소식 하단 파트---------------------------------------------------------------------------->
-    <div class="card-header translatable">행사</div>
-    <div class="typeButton">
-        <button data-categoryBtn="전체">전체</button>
-        <button data-categoryBtn="국악">국악</button>
-        <button data-categoryBtn="연극">연극</button>
-        <button data-categoryBtn="축제-문화/예술">축제-문화/예술</button>
-        <button data-categoryBtn="전시/미술">전시/미술</button>
-        <button data-categoryBtn="무용">무용</button>
-        <button data-categoryBtn="교육/체험">교육/체험</button>
-        <button data-categoryBtn="콘서트">콘서트</button>
-    </div>
-    <section class="card-section-size" >
-        
-            <div id="festival-card-section">
 
+    <main class="d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="container my-5">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <a href="map.html" class="card-link">
+                        <div class="card h-100 text-white bg-primary">
+                            <div class="card-body">
+                                <h5 class="card-title translatable">편의시설</h5>
+                                <p class="card-text translatable">주변의 다양한 편의시설을 쉽게 찾아보세요</p>
+                                <img src="./image/편의.png" class="img-fluid">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="etiquette.html" class="card-link">
+                        <div class="card h-100 text-white bg-success">
+                            <div class="card-body">
+                                <h5 class="card-title translatable">에티켓</h5>
+                                <p class="card-text translatable">한국에서 꼭 지켜야 할 에티켓을 알아보세요</p>
+                                <img src="./image/에티.png" class="img-fluid" alt="이미지 설명">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="page3.html" class="card-link">
+                        <div class="card h-100 text-white bg-dark">
+                            <div class="card-body">
+                                <h5 class="card-title translatable">소식</h5>
+                                <p class="card-text translatable">서울에서 열리는 최신 공연과 전시 소식을 놓치지마세요</p>
+                                <img src="./image/소.png" class="img-fluid" alt="이미지 설명">
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
-        
-    </section>
-    <div class="moveTopBtn">▲</div>
-    <!--------------------------------------------------------------------------여기 까지 소식 하단 파트---------------------------------------------------------------------------->
+        </div>
+    </main>
+
     <footer>
         <!-- Laptop ver. -->
         <div class="container laptop" style="width: 100%">
@@ -164,13 +147,10 @@
             </div>
         </div>
     </footer>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script type="text/javascript">
-	function googleTranslateElementInit() {new google.translate.TranslateElement({pageLanguage: 'ko',autoDisplay: false}, 'google_translate_element');}
-</script>
 
     <script src="https://kit.fontawesome.com/3f3a5a09fc.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="js/info.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="nav.js"></script>
 </body>
+
 </html>
