@@ -120,6 +120,20 @@ body {
 }
 
 /*-----------------------------------------------------------------여기 까지 소식 하단 파트 ----------------------------------------------------------------------------------------*/
+body {
+  font-family: 'Pretendard-Regular', sans-serif;
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* 전체 배경 색상 */
+  margin: 0;
+  padding: 0;
+}
+
 /* navbar */
 .navbar-nav {
   flex-direction: row;
@@ -201,6 +215,68 @@ body {
   transform: translateX(-50%);
 }
 
+/* main */
+main {
+  flex-grow: 1;
+}
+
+.card-body img {
+  width: auto; /* 가로 크기를 자동으로 조정 */
+  height: 200px; /* 높이 조정 */
+  margin-top: auto;
+}
+
+.card-title {
+  font-size: 1.8rem; /* 카드 제목 크기 조정 */
+  margin-bottom: 15px;
+}
+
+.card-text {
+  font-size: 1.2rem; /* 카드 텍스트 크기 조정 */
+}
+
+/* .card-link 스타일 추가 */
+.card-link {
+  text-decoration: none;
+}
+
+.card-link:hover .card {
+  transform: scale(1.02);
+  transition: transform 0.2s;
+}
+
+/* 세련되고 입체적인 스타일 */
+.custom-card {
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  height: 380px; /* 높이 조정 */
+  margin-bottom: 30px; /* 카드 간격 추가 */
+}
+
+.custom-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.custom-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.custom-card img {
+  align-self: center;
+  margin-top: 20px;
+  transition: transform 0.3s;
+}
+
+.custom-card:hover img {
+  transform: scale(1.05);
+}
+
 /* footer */
 footer {
   position: relative;
@@ -211,7 +287,7 @@ footer {
   text-decoration: none;
   display: flex;
   justify-content: center;
-  padding: 20px 0;
+  padding: 20px 0; /* 처음 높이로 되돌림 */
 }
 
 footer::before {
@@ -319,6 +395,19 @@ footer > .container {
     justify-content: center;
     width: 100%;
   }
+  .custom-card {
+    height: 350px; /* 모바일에서 카드 높이 조정 */
+    margin-bottom: 25px; /* 카드 간격 조정 */
+  }
+  .card-title {
+    font-size: 1.5rem; /* 모바일에서 카드 제목 크기 조정 */
+  }
+  .card-text {
+    font-size: 1rem; /* 모바일에서 카드 텍스트 크기 조정 */
+  }
+  .card-body img {
+    height: 140px; /* 모바일에서 이미지 크기 조정 */
+  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -327,6 +416,7 @@ footer > .container {
   }
 }
 
+/*///////////////////////////////////////////////////////info 상단/////////////////////////////////////////////////////////////////////////*/
 * {
   font-family: 'Pretendard-Regular';
   margin: 0;
