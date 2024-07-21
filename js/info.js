@@ -1,8 +1,17 @@
 // <---------------------------------------------------------------여기 부터 소식 하단 파트 --------------------------------------------------------->//
 const festivalApiKey = `59746b4962686f7436334e564e6778`;
-let underFestivalUrl = new URL(
-  `http://openapi.seoul.go.kr:8088/${festivalApiKey}/json/culturalEventInfo/1/50///2024-07-21`
-); // API 키
+
+let host =
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+    ? `http://openapi.seoul.go.kr:8088/${festivalApiKey}/json/culturalEventInfo/`
+    : 'api0';
+
+let apiClient = axios.create({
+  baseURL: host,
+});
+
+let underFestivalUrl = `http://openapi.seoul.go.kr:8088/${festivalApiKey}/json/culturalEventInfo/1/50///2024-07-21`; // API 키
 const typeButtons = document.querySelectorAll(
   '.typeButton button, .typeButton button font'
 );
@@ -19,35 +28,90 @@ function googleTranslateElementInit() {
   );
 }
 
-const festivalView = async () => {
+const festivalView = () => {
   // API 값을 불러오는 기능
+  host =
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1'
+      ? `http://openapi.seoul.go.kr:8088/${festivalApiKey}/json/culturalEventInfo/`
+      : 'api0';
 
-  const response = await fetch(underFestivalUrl);
-  const data = await response.json();
-  underFestivalList = data.culturalEventInfo.row;
-  console.log(data);
-  console.log(underFestivalList);
-
-  cardRender();
+  apiClient = axios.create({
+    baseURL: host,
+  });
+  apiClient
+    .get('1/50///2024-07-21')
+    .then(function (result) {
+      const status = result.status;
+      const data = result.data;
+      console.log('통신결과 : ', result);
+      underFestivalList = data.culturalEventInfo.row;
+      cardRender();
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
 };
 
-const getCardsByCategory = async (event) => {
+const festivalByCategory = (category, apiSrc) => {
+  host =
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1'
+      ? `http://openapi.seoul.go.kr:8088/${festivalApiKey}/json/culturalEventInfo/`
+      : apiSrc;
+
+  apiClient = axios.create({
+    baseURL: host,
+  });
+
+  apiClient
+    .get(`1/50/${category}///2024-07-21`)
+    .then(function (result) {
+      const status = result.status;
+      const data = result.data;
+      console.log('통신결과 : ', result);
+      underFestivalList = data.culturalEventInfo.row;
+      cardRender();
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+};
+
+const getCardsByCategory = (event) => {
   // 버튼을 누르면 해당 카테고리의 행사를 찾아주는 기능
   let category = event.currentTarget.getAttribute('data-categoryBtn');
-  console.log(category);
+  let apiSrc;
   if (category === '전체') {
-    underFestivalUrl = new URL(
-      `http://openapi.seoul.go.kr:8088/${festivalApiKey}/json/culturalEventInfo/1/50///2024-07-21`
-    );
-    await festivalView();
-  } else {
-    let Url = new URL(
-      `http://openapi.seoul.go.kr:8088/${festivalApiKey}/json/culturalEventInfo/1/50/${category}///2024-07-21`
-    );
-    underFestivalUrl = decodeURIComponent(Url);
-
-    await festivalView();
+    festivalView();
+    return;
   }
+  switch (category) {
+    case '국악':
+      apiSrc = 'api1';
+      break;
+    case '연극':
+      apiSrc = 'api2';
+      break;
+    case '축제-문화/예술':
+      apiSrc = 'api3';
+      break;
+    case '전시/미술':
+      apiSrc = 'api4';
+      break;
+    case '무용':
+      apiSrc = 'api5';
+      break;
+    case '교육/체험':
+      apiSrc = 'api6';
+      break;
+    case '콘서트':
+      apiSrc = 'api7';
+      break;
+    default:
+      return;
+  }
+  festivalByCategory(category, apiSrc);
 };
 
 const cardRender = () => {
@@ -92,47 +156,47 @@ festivalView();
 const weatherApiKey = '8f96d88863ec693820e54665e9bbc266';
 
 function initializeWeather(city) {
-    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric&lang=kr`;
+  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric&lang=kr`;
 
-    async function updateWeather() {
-        const weatherElements = document.querySelectorAll('.navbar-text');
-        weatherElements.forEach(element => {
-            element.innerHTML = '날씨 정보를 불러오는 중...';
-        });
+  async function updateWeather() {
+    const weatherElements = document.querySelectorAll('.navbar-text');
+    weatherElements.forEach((element) => {
+      element.innerHTML = '날씨 정보를 불러오는 중...';
+    });
 
-        try {
-            const response = await fetch(weatherUrl);
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            const data = await response.json();
-            if (data.cod === 200) {
-                const temperature = data.main.temp.toFixed(1); // 소수점 첫째 자리까지
-                const weatherDescription = data.weather[0].description;
-                const iconCode = data.weather[0].icon;
-                const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    try {
+      const response = await fetch(weatherUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      const data = await response.json();
+      if (data.cod === 200) {
+        const temperature = data.main.temp.toFixed(1); // 소수점 첫째 자리까지
+        const weatherDescription = data.weather[0].description;
+        const iconCode = data.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
-                weatherElements.forEach(element => {
-                    element.innerHTML = `
+        weatherElements.forEach((element) => {
+          element.innerHTML = `
                         <img src="${iconUrl}" alt="${weatherDescription}" style="width: 30px; margin-right: 10px;">
                         <span>${temperature}°C</span>
                     `;
-                });
-            } else {
-                weatherElements.forEach(element => {
-                    element.textContent = '날씨 정보를 불러오는데 실패했습니다.';
-                });
-            }
-        } catch (error) {
-            console.error('Error fetching weather data:', error);
-            weatherElements.forEach(element => {
-                element.textContent = '날씨 정보를 불러오는데 실패했습니다.';
-            });
-        }
+        });
+      } else {
+        weatherElements.forEach((element) => {
+          element.textContent = '날씨 정보를 불러오는데 실패했습니다.';
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      weatherElements.forEach((element) => {
+        element.textContent = '날씨 정보를 불러오는데 실패했습니다.';
+      });
     }
+  }
 
-    updateWeather();
-    setInterval(updateWeather, 600000); // 600000ms = 10분
+  updateWeather();
+  setInterval(updateWeather, 600000); // 600000ms = 10분
 }
 
 // 날씨 정보 초기화
@@ -147,19 +211,20 @@ const moreButtonArea = document.querySelector('.festival-more-btn');
 const FESTIVAL_API_KEY =
   '4Jj5rc%2BmE6PU5FPhSUrBLlZ%2F7YU9rhZSd7xA4SnN17zDZGzvJs5bJhMuZKGgwOyDZIDXqzRjWAMakxfgk3jjQQ%3D%3D';
 const FESTIVAL_PAGE_SIZE = 10;
-const DEFAULT_URL = 'http://apis.data.go.kr/B551011/KorService1';
+const DEFAULT_URL = '//apis.data.go.kr/B551011/KorService1';
 const today = new Date();
 const todayYear = today.getFullYear().toString();
 const todayMonth = (today.getMonth() + 1).toString().padStart(2, '0');
 const todayDate = today.getDate().toString().padStart(2, '0');
 const startDate = `${todayYear}${todayMonth}${todayDate}`;
-const festivalUrl = new URL(
-  `${DEFAULT_URL}/searchFestival1?serviceKey=${FESTIVAL_API_KEY}&numOfRows=${FESTIVAL_PAGE_SIZE}&MobileOS=ETC&MobileApp=APPTest&_type=Json&areaCode=1&eventStartDate=${startDate}`
-);
-
+// const festivalUrl = new URL(
+//   `${DEFAULT_URL}/searchFestival1?serviceKey=${FESTIVAL_API_KEY}&numOfRows=${FESTIVAL_PAGE_SIZE}&MobileOS=ETC&MobileApp=APPTest&_type=Json&areaCode=1&eventStartDate=${startDate}`
+// );
 let festivalList = [];
 let totalPage = undefined;
 let currentPage = 1;
+
+let festivalUrl = `${DEFAULT_URL}/searchFestival1?serviceKey=${FESTIVAL_API_KEY}&numOfRows=${FESTIVAL_PAGE_SIZE}&MobileOS=ETC&MobileApp=APPTest&_type=Json&areaCode=1&eventStartDate=${startDate}&pageNo=${currentPage}`;
 
 getDefaultInfo();
 
@@ -181,7 +246,7 @@ async function getMoreInfo() {
 }
 
 async function fetchFestivalInfo() {
-  festivalUrl.searchParams.set('pageNo', currentPage);
+  //festivalUrl.searchParams.set('pageNo', currentPage);
   try {
     const res = await fetch(festivalUrl);
     const data = await res.json();
@@ -206,9 +271,9 @@ function renderCarousel() {
       !item.firstimage ? 'no-img' : ''
     }" style="background-image:url(${
       item.firstimage || 'image/noImage.png'
-    })"><a href="festivalDetail.html?id=${
+    })"><a href="#" data-contentid="${
       item.contentid
-    }"><span class="swiper-status translatable ${
+    }" class="carousel-item-link"><span class="swiper-status translatable ${
       startDate > item.eventstartdate ? 'ing' : 'wil'
     }">${
       startDate > item.eventstartdate ? '진행중' : '오픈예정'
@@ -237,6 +302,10 @@ function renderCarousel() {
   document
     .querySelector('.item-more-btn')
     .addEventListener('click', getMoreInfo);
+
+  document.querySelectorAll('.carousel-item-link').forEach((item) => {
+    item.addEventListener('click', moveToHomepage);
+  });
 }
 
 async function renderMoreList() {

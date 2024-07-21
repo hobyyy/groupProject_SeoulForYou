@@ -1,0 +1,8 @@
+/api0/* http://openapi.seoul.go.kr:8088/59746b4962686f7436334e564e6778/json/culturalEventInfo/1/50///2024-07-21/:splat 200
+/api1/* http://openapi.seoul.go.kr:8088/59746b4962686f7436334e564e6778/json/culturalEventInfo/1/50/국악///2024-07-21/:splat 200
+/api2/* http://openapi.seoul.go.kr:8088/59746b4962686f7436334e564e6778/json/culturalEventInfo/1/50/연극///2024-07-21/:splat 200
+/api3/* http://openapi.seoul.go.kr:8088/59746b4962686f7436334e564e6778/json/culturalEventInfo/1/50/축제-문화/예술///2024-07-21/:splat 200
+/api4/* http://openapi.seoul.go.kr:8088/59746b4962686f7436334e564e6778/json/culturalEventInfo/1/50/전시/미술///2024-07-21/:splat 200
+/api5/* http://openapi.seoul.go.kr:8088/59746b4962686f7436334e564e6778/json/culturalEventInfo/1/50/무용///2024-07-21/:splat 200
+/api6/* http://openapi.seoul.go.kr:8088/59746b4962686f7436334e564e6778/json/culturalEventInfo/1/50/교육/체험///2024-07-21/:splat 200
+/api7/* http://openapi.seoul.go.kr:8088/59746b4962686f7436334e564e6778/json/culturalEventInfo/1/50/콘서트///2024-07-21/:splat 200
