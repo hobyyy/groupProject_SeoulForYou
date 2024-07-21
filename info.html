@@ -22,38 +22,42 @@
     <link rel="stylesheet" href="css/info.css" />
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light nav-deco">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light nav-deco">
       <div class="container d-flex justify-content-between">
-        <a class="navbar-brand" href="./index.html">
-          <img src="./image/logo.png" alt="Company Logo" width="30" />
-        </a>
-        <div class="d-flex align-items-center">
-          <span class="navbar-text me-3">
-            <!-- weather will be inserted here -->
-          </span>
-          <!-- Google Translate Widget -->
-          <div id="google_translate_element"></div>
-          <script type="text/javascript">
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement(
-                {
-                  pageLanguage: 'ko',
-                  includedLanguages: 'ko,en,zh-CN,zh-TW,ja',
-                  layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                  autoDisplay: false,
-                },
-                'google_translate_element'
-              );
-            }
-          </script>
-          <script
-            type="text/javascript"
-            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-          ></script>
-          <!-- Google Translate Widget Ends -->
-        </div>
+          <a class="navbar-brand" href="./index.html">
+              <img src="./image/sub-logo.png" alt="Company Logo" width="200">
+          </a>
+          <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <div class="d-flex flex-column flex-lg-row align-items-lg-center nav-links">
+                  <a class="nav-link" href="map.html">편의시설</a>
+                  <a class="nav-link" href="etiquette.html">에티켓</a>
+                  <a class="nav-link" href="info.html">소식</a>
+              </div>
+              <div class="d-flex align-items-center ms-auto weather-translate-wrapper">
+                  <span class="navbar-text me-3">
+                      <!-- weather will be inserted here -->
+                  </span>
+                  <!-- Google Translate Widget -->
+                  <div id="google_translate_element"></div>
+                  <script type="text/javascript">
+                      function googleTranslateElementInit() {
+                          new google.translate.TranslateElement({
+                              pageLanguage: 'ko',
+                              includedLanguages: 'ko,en,zh-CN,zh-TW,ja',
+                              layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                              autoDisplay: false
+                          }, 'google_translate_element');
+                      }
+                  </script>
+                  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                  <!-- Google Translate Widget Ends -->
+              </div>
+          </div>
       </div>
-    </nav>
+  </nav>
     <section class="festival container">
       <h2 class="festival-title translatable">축제/행사</h2>
       <div class="swiper-wrap">
@@ -86,101 +90,81 @@
     <footer>
       <!-- Laptop ver. -->
       <div class="container laptop" style="width: 100%">
-        <div>
-          <div class="row pb-3 pt-3 second-line align-items-center">
-            <div class="first-box d-flex align-items-center">
-              <div>
-                <img src="./image/logo.png" alt="Logo" width="50px" />
+          <div>
+              <div class="row pb-3 pt-3 second-line align-items-center">
+                  <div class="first-box d-flex align-items-center">
+                      <div>
+                          <img src="./image/logo.png" alt="Logo" width="50px">
+                      </div>
+                      <div class="company ms-3">
+                          <div><strong class="translatable">SEOUL FOR YOU</strong></div>
+                          <div class="translatable">서울특별시 누나구 감사동 사랑빌딩</div>
+                          <div class="translatable">그룹: 누나네 6조 | Tel: 010-1234-5678</div>
+                          <div class="no-translate">Copyright ⓒNoona Corp. All Rights Reserved.</div>
+                      </div>
+                  </div>
+                  <div class="second-box d-flex justify-content-end">
+                      <div class="sns-box">
+                          <a href="https://www.facebook.com" class="sns-icon">
+                              <i class="fa-brands fa-facebook-f"></i>
+                          </a>
+                      </div>
+                      <div class="sns-box">
+                          <a href="https://www.instagram.com" class="sns-icon">
+                              <i class="fa-brands fa-instagram"></i>
+                          </a>
+                      </div>
+                      <div class="sns-box">
+                          <a href="https://www.twitter.com" class="sns-icon">
+                              <i class="fa-brands fa-x-twitter"></i>
+                          </a>
+                      </div>
+                      <div class="sns-box">
+                          <a href="https://www.youtube.com" class="sns-icon">
+                              <i class="fa-brands fa-youtube"></i>
+                          </a>
+                      </div>
+                  </div>
               </div>
-              <div class="company ms-3">
-                <div><strong class="translatable">웹페이지명</strong></div>
-                <div class="translatable">주소</div>
-                <div class="translatable">
-                  그룹: 누나네 6조 | Tel: 010-1234-5678
-                </div>
-                <div class="no-translate">
-                  Copyright ⓒNoona Corp. All Rights Reserved.
-                </div>
-              </div>
-            </div>
-            <div class="second-box d-flex justify-content-end">
-              <div class="sns-box">
-                <a href="https://www.facebook.com" class="sns-icon">
-                  <i class="fa-brands fa-facebook-f"></i>
-                </a>
-              </div>
-              <div class="sns-box">
-                <a href="https://www.instagram.com" class="sns-icon">
-                  <i class="fa-brands fa-instagram"></i>
-                </a>
-              </div>
-              <div class="sns-box">
-                <a href="https://www.twitter.com" class="sns-icon">
-                  <i class="fa-brands fa-x-twitter"></i>
-                </a>
-              </div>
-              <div class="sns-box">
-                <a href="https://www.youtube.com" class="sns-icon">
-                  <i class="fa-brands fa-youtube"></i>
-                </a>
-              </div>
-            </div>
           </div>
-        </div>
       </div>
 
       <!-- Mobile ver. -->
       <div class="container mobile">
-        <div>
-          <div class="row pb-3 pt-3 second-line text-center">
-            <div class="company">
-              <div><strong class="translatable">웹페이지명</strong></div>
-              <div class="translatable">주소</div>
-              <div class="translatable">
-                그룹: 누나네 6조 | Tel: 010-1234-5678
+          <div>
+              <div class="row pb-3 pt-3 second-line text-center">
+                  <div class="company">
+                      <div><strong class="translatable">SEOUL FOR YOU</strong></div>
+                      <div class="translatable">서울특별시 누나구 감사동 사랑빌딩</div>
+                      <div class="translatable">그룹: 누나네 6조 | Tel: 010-1234-5678</div>
+                      <div class="no-translate">Copyright ⓒNoona Corp. All Rights Reserved.</div>
+                  </div>
+                  <div class="second-box mt-3 d-flex justify-content-center">
+                      <div class="sns-box mobile-sns">
+                          <a href="https://www.facebook.com" class="sns-icon mobile-sns-icon">
+                              <i class="fa-brands fa-facebook-f"></i>
+                          </a>
+                      </div>
+                      <div class="sns-box mobile-sns">
+                          <a href="https://www.instagram.com" class="sns-icon mobile-sns-icon">
+                              <i class="fa-brands fa-instagram"></i>
+                          </a>
+                      </div>
+                      <div class="sns-box mobile-sns">
+                          <a href="https://www.twitter.com" class="sns-icon mobile-sns-icon">
+                              <i class="fa-brands fa-x-twitter"></i>
+                          </a>
+                      </div>
+                      <div class="sns-box mobile-sns">
+                          <a href="https://www.youtube.com" class="sns-icon mobile-sns-icon">
+                              <i class="fa-brands fa-youtube"></i>
+                          </a>
+                      </div>
+                  </div>
               </div>
-              <div class="no-translate">
-                Copyright ⓒNoona Corp. All Rights Reserved.
-              </div>
-            </div>
-            <div class="second-box mt-3 d-flex justify-content-center">
-              <div class="sns-box mobile-sns">
-                <a
-                  href="https://www.facebook.com"
-                  class="sns-icon mobile-sns-icon"
-                >
-                  <i class="fa-brands fa-facebook-f"></i>
-                </a>
-              </div>
-              <div class="sns-box mobile-sns">
-                <a
-                  href="https://www.instagram.com"
-                  class="sns-icon mobile-sns-icon"
-                >
-                  <i class="fa-brands fa-instagram"></i>
-                </a>
-              </div>
-              <div class="sns-box mobile-sns">
-                <a
-                  href="https://www.twitter.com"
-                  class="sns-icon mobile-sns-icon"
-                >
-                  <i class="fa-brands fa-x-twitter"></i>
-                </a>
-              </div>
-              <div class="sns-box mobile-sns">
-                <a
-                  href="https://www.youtube.com"
-                  class="sns-icon mobile-sns-icon"
-                >
-                  <i class="fa-brands fa-youtube"></i>
-                </a>
-              </div>
-            </div>
           </div>
-        </div>
       </div>
-    </footer>
+  </footer>
     
 
     <script
