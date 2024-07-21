@@ -30,10 +30,12 @@ let infowindow = new kakao.maps.InfoWindow({zIndex:1});
 // keywordSearchPlaces();
 
 // 키워드 검색을 요청하는 함수
-function keywordSearchPlaces(value) {
+function keywordSearchPlaces(value, event) {
+  event.preventDefault();
+  console.log('event', event)
 
   let keyword = value ? value : document.getElementById('keyword').value;
-  
+  console.log('keyword', keyword)
   if (!keyword.replace(/^\s+|\s+$/g, '')) {
     alert('키워드를 입력해주세요!');
     return false;
