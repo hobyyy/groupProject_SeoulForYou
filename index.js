@@ -4,8 +4,10 @@ function initializeWeather(city) {
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric&lang=kr`;
 
     async function updateWeather() {
-        const weatherElement = document.querySelector('.navbar-text');
-        weatherElement.innerHTML = '날씨 정보를 불러오는 중...';
+        const weatherElements = document.querySelectorAll('.navbar-text');
+        weatherElements.forEach(element => {
+            element.innerHTML = '날씨 정보를 불러오는 중...';
+        });
 
         try {
             const response = await fetch(weatherUrl);
@@ -19,16 +21,22 @@ function initializeWeather(city) {
                 const iconCode = data.weather[0].icon;
                 const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
-                weatherElement.innerHTML = `
-                    <img src="${iconUrl}" alt="${weatherDescription}" style="width: 30px; margin-right: 10px;">
-                    <span>${temperature}°C</span>
-                `;
+                weatherElements.forEach(element => {
+                    element.innerHTML = `
+                        <img src="${iconUrl}" alt="${weatherDescription}" style="width: 30px; margin-right: 10px;">
+                        <span>${temperature}°C</span>
+                    `;
+                });
             } else {
-                weatherElement.textContent = '날씨 정보를 불러오는데 실패했습니다.';
+                weatherElements.forEach(element => {
+                    element.textContent = '날씨 정보를 불러오는데 실패했습니다.';
+                });
             }
         } catch (error) {
             console.error('Error fetching weather data:', error);
-            weatherElement.textContent = '날씨 정보를 불러오는데 실패했습니다.';
+            weatherElements.forEach(element => {
+                element.textContent = '날씨 정보를 불러오는데 실패했습니다.';
+            });
         }
     }
 
