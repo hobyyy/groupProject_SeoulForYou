@@ -12,7 +12,6 @@ typeButtons.forEach((menu) =>
 const $topBtn = document.querySelector('.moveTopBtn'); // 스크롤 업 버튼
 let underFestivalList = []; // API 정보 받을 배열
 
-
 function googleTranslateElementInit() {
   new google.translate.TranslateElement(
     { pageLanguage: 'ko', includedLanguages: 'ko,en,jp' },
@@ -162,10 +161,6 @@ let festivalList = [];
 let totalPage = undefined;
 let currentPage = 1;
 
-moreButtonArea.addEventListener('click', (e) => {
-  if (e.target.tagName === 'BUTTON') getMoreInfo();
-});
-
 getDefaultInfo();
 
 //기본 축제정보&캐러샐 불러오기
@@ -237,8 +232,11 @@ function renderCarousel() {
         `
   );
   if (totalPage > 1) {
-    moreButtonArea.innerHTML = `<button class="translatable"><i class="fa-solid fa-chevron-down"></i> 더보기</button>`;
+    moreButtonArea.innerHTML = `<button class="item-more-btn"><i class="fa-solid fa-chevron-down"></i> 더보기</button>`;
   }
+  document
+    .querySelector('.item-more-btn')
+    .addEventListener('click', getMoreInfo);
 }
 
 async function renderMoreList() {
